@@ -6,7 +6,7 @@ else
 fi
 if [ "$1" ]; then
   if [ "$2" = "--list" ]; then
-    grep -ro --text ^KEY:.*$1 $cache_dir
+    grep -r --text ^KEY:.*$1 $cache_dir |sort -k2
   elif [ "$2" = "--date" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir | xargs -I% ls -lt % | tac
   else

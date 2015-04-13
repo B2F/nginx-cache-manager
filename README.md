@@ -38,7 +38,7 @@ It will search for all cache keys containing the "example.com/en" token in your 
     /var/cache/nginx/5/cc/f03037321598888c7eb6503853824cc5:KEY: GETexample.com/en
 
 ###Show cache files by date (--date)###
-The --date option returns results sorted by date, most recent first.
+The --date option returns results sorted by date:
 
     nginx-cachelord.sh example.com/en --date
     -rw------- 1 nginx nginx 45660 10 avril 23:27 /var/cache/nginx/4/89/1880afbadcbe3787788dca921988d894

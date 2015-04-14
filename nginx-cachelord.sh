@@ -11,13 +11,18 @@ if [ "$3" ]; then
   cache_dir=$3
 fi
 if [ "$1" ]; then
+  # list all matching cache keys sorted by name
   if [ "$2" = "--list" ]; then
     grep -r --text ^KEY:.*$1 $cache_dir |sort -k2
+  # print matching cache file entries sorted by date
   elif [ "$2" = "--date" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I% ls -l % |sort -k6 |tac
   elif [ "$2" = "--new" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I% ls -l % |sort -k6 |tac |cut -d' ' -f9 |xargs -I% sed -n 2p %
   else
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I% rm -v %
+  else
+    echo 'nginx-cachelord.sh token [--rm]|[--list]|[--date]|[--new]'
+    echo 'Invalid option "'$2'"'
   fi
 fi

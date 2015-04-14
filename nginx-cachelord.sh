@@ -1,8 +1,14 @@
 #!/bin/sh
+# The cache directory can be written in the cache_dir variable from the nginx-cache-dir.ini file in your working directory
 if [ -f "nginx-cache-dir.ini" ]; then
   source ./nginx-cache-dir.ini
+# Default cache directory is "/var/cache/nginx"
 else
   cache_dir=/var/cache/nginx
+fi
+# The third option value can be used to override the cache directory
+if [ "$3" ]; then
+  cache_dir=$3
 fi
 if [ "$1" ]; then
   if [ "$2" = "--list" ]; then

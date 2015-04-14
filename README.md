@@ -11,10 +11,14 @@ First, if your use another cache directory than **/var/cache/nginx**, your can e
 
     cache_dir=/var/nginx/cache
 
-###Purge the cache selectively###
+You can alternatively pass the cache directory as third option value
+
+    nginx-cachelord.sh . --list /var/cache/nginx/website
+
+###Purge the cache selectively (--rm)###
 Call the script without options and it will erase cache entries according to the mandatory token argument:
 
-    nginx-cachelord.sh example.com/en
+    nginx-cachelord.sh example.com/en --rm
     « /var/nginx/cache/ifzenelse/5/cc/f03037321598888c7eb6503853824cc5 » removed
     « /var/nginx/cache/ifzenelse/6/62/00a62ec49a9f974b17ac93b09f777626 » removed
     « /var/nginx/cache/ifzenelse/4/89/1880afbadcbe3787788dca921988d894 » removed
@@ -22,7 +26,7 @@ Call the script without options and it will erase cache entries according to the
 In the above, cache keys containing the "example.com/en" token will be erased without confirmation. To preview your changes, use the **--list** option below.
 
 ###List your cache content selectively (--list)###
-The --list argument returns cache keys filtered by the token argument (no invalidations involved):
+The --list argument returns cache keys filtered by the token argument (no invalidations involved), sorted by name:
 
     nginx-cachelord.sh example.com/en --list
     /var/cache/nginx/5/cc/f03037321598888c7eb6503853824cc5:KEY: GETexample.com/en
@@ -41,9 +45,9 @@ It will search for all cache keys containing the "example.com/en" token in your 
 The --date option returns results sorted by date:
 
     nginx-cachelord.sh example.com/en --date
-    -rw------- 1 nginx nginx 45660 10 avril 23:27 /var/cache/nginx/4/89/1880afbadcbe3787788dca921988d894
-    -rw------- 1 nginx nginx 28974 10 avril 23:26 /var/cache/nginx/6/62/00a62ec49a9f974b17ac93b09f777626
-    -rw------- 1 nginx nginx 43654 10 avril 23:26 /var/cache/nginx/5/cc/f03037321598888c7eb6503853824cc5
+    -rw------- 1 nginx nginx 45660 2015 04 10 23:27 /var/cache/nginx/4/89/1880afbadcbe3787788dca921988d894
+    -rw------- 1 nginx nginx 28974 2015 04 10 23:26 /var/cache/nginx/6/62/00a62ec49a9f974b17ac93b09f777626
+    -rw------- 1 nginx nginx 43654 2015 04 10 23:26 /var/cache/nginx/5/cc/f03037321598888c7eb6503853824cc5
 
 ###Show cache files by date (--new)###
 The --new option returns results KEYS text, with most recent results printed first.

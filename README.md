@@ -52,13 +52,13 @@ The --date option returns results sorted by date:
 ###Show cache files by date (--new)###
 The --new option returns results KEYS text, with most recent results printed first.
 
-    nginx-cachelord.sh example.com/en --date
+    nginx-cachelord.sh example.com/en --new
     GETexample.com/en
     GETexample.com/en/tags
     GETexample.com/en/blog
 
 ###Watch for cache changes###
-The Unix watch command is helpful to monitor your cache changes, either with --list or --date options, filtered by tokens:
+The Unix watch command is helpful to monitor your cache changes, either with --list, --date or --new options, filtered by tokens:
 
     watch -n1 nginx-cachelord.sh /en --new
     Every 1,0s: ls

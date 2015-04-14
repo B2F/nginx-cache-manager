@@ -21,7 +21,7 @@ if [ "$1" ]; then
   elif [ "$2" = "--new" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I$ ls -l --time-style="+%Y %m %e %l:%M" $ |sort -k6,9 |tac |cut -d' ' -f11 |xargs -I% sed -n 2p %
   # remove matching cache entries when a token is found with the "-rm" option
-  elif [ "$#" = 3 ] && [ $2 = "--rm" ]; then
+  elif [ $2 = "--rm" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I% rm -v %
   else
     echo 'nginx-cachelord.sh token [--rm]|[--list]|[--date]|[--new]'

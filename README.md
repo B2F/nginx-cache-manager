@@ -74,3 +74,18 @@ The wc Unix command with the -l option is used to count lines, you can take its 
 
     nginx-cachelord.sh example.com/fr --list |wc -l
     nginx-cachelord.sh example.com/en --list |wc -l
+
+###System wide script installation###
+Once you get used to this script, you can install it system wide by linking it somewhere in your path:
+
+    ln -s /path/to/nginx-cachelord.sh /usr/bin/nginx-cl
+    nginx-cl . --list /path/to/cache
+
+You can further tweak it with a nginx-cache-dir.ini file in your web source root, specifying the website cache directory:
+
+    # /path/to/website/nginx-cache-dir.ini
+    cache_dir=/var/cache/nginx/website
+
+Then you'll only need to call nginx-cl from your website source root:
+
+    nginx-cl . --list

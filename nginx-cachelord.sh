@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # The cache directory can be written in the cache_dir variable from the nginx-cache-dir.ini file in your working directory
 if [ -f "nginx-cache-dir.ini" ]; then
   source ./nginx-cache-dir.ini
@@ -10,6 +11,9 @@ fi
 if [ "$3" ]; then
   cache_dir=$3
 fi
+
+options_list='nginx-cachelord.sh token [--rm]|[--list]|[--date]|[--new]'
+
 if [ "$1" ]; then
   # list all matching cache keys sorted by name
   if [ "$2" = "--list" ]; then
@@ -24,7 +28,9 @@ if [ "$1" ]; then
   elif [ $2 = "--rm" ]; then
     grep -rl --text ^KEY:.*$1 $cache_dir |xargs -I% rm -v %
   else
-    echo 'nginx-cachelord.sh token [--rm]|[--list]|[--date]|[--new]'
+    echo $options_list
     echo 'Invalid option "'$2'"'
   fi
+else
+  echo $options_list
 fi
